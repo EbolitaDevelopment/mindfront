@@ -6,16 +6,16 @@ const Nav = () => {
   return (
     <Navar>
       <Button />
-      <div className="auth-links">
-        <h2>Iniciar sesión</h2>
-        <h2>Registrarse</h2>
-      </div>
       <div className="lista">
         <a href="/" aria-label="Proposito">Propósito</a>
         <a href="/" aria-label="Retos">Retos</a>
         <a href="/" aria-label="Juegos">Juegos</a>
         <a href="/" aria-label="Canalizacion">Canalización</a>
         <a href="/" aria-label="Cuenta">Cuenta</a>
+      </div>
+      <div className="auth-links">
+        <a href='/'><h2>Iniciar sesión</h2></a>
+        <a href='/'><h2>Registrarse</h2></a>
       </div>
     </Navar>
   );
@@ -62,6 +62,10 @@ const Navar = styled.nav`
     
     .auth-links {
       margin-bottom: 1rem;
+
+      h2{
+        font-size:1rem;      
+      }
     }
 
     .lista {

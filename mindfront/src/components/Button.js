@@ -8,7 +8,6 @@ export const Button = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
   return (
     <Boton onClick={toggleMenu}> 
       <div className={`nav-icon-5 ${isOpen ? 'open' : ''}`}>
@@ -21,6 +20,8 @@ export const Button = () => {
 }
 
 const Boton = styled.div`
+
+  background-color:#444;
   .nav-icon-5 {
     width: 35px;
     height: 30px;
