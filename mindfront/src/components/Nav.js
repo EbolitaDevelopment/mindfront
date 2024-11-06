@@ -1,8 +1,32 @@
-
 import styled from 'styled-components';  // Correct import
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
+
+  const links = [
+    {
+      name: 'Proposito',
+      href: '/proposito',
+    },
+    {
+      name: 'Reto',
+      href: '/retos',
+    },
+    {
+      name: 'Juegos',
+      href: '/juegos',
+    },
+    {
+      name: 'Canalizacion',
+      href: '/canalizacion',
+    },
+    {
+      name: 'Cuenta',
+      href: '/cuenta',
+    },
+
+  ]
   const [isOpen, setIsOpen] = useState(false);
 
   // Función para alternar el estado de la barra de navegación
@@ -13,6 +37,9 @@ const Nav = () => {
   return (
     <Navar>
       <div>
+        {links.map (x =>(
+          <Link to={x.href}>{x.name}</Link>
+        ))}
       <button className="menu-toggle" onClick={toggleMenu}>
         ☰
       </button>
@@ -20,13 +47,17 @@ const Nav = () => {
         <ul className="nav-links">
           <li></li>
           <li></li>
-          <a href="#home"><button>Inicio</button></a>
-          <a href="#home"><button>Inicio</button></a>
-          <a href="#home"><button>Inicio</button></a>
-          <a href="#home"><button>Inicio</button></a>
-          <a href="#home"><button>Inicio</button></a>
+          <a href="#home"><button>Proposito</button></a>
+          <a href="#home"><button>Retos</button></a>
+          <a href="#home"><button>Juegos</button></a>
+          <a href="#home"><button>Canalizacion</button></a>
+          <a href="#home"><button>Cuenta</button></a>
         </ul>
       </nav>
+    </div>
+    <div>
+      <button></button>
+      <button></button>
     </div>
     </Navar>
   );
@@ -45,11 +76,11 @@ const Navar = styled.nav`
 /* Estilo del botón de menú (ícono de hamburguesa) */
 .menu-toggle {
   position: fixed;
-  top: 20px;
-  left: 20px;
-  background-color: #333;
+  top: 0px;
+  left: 0px;
+  background-color: #444;
   color: white;
-  font-size: 30px;
+  font-size: 45px;
   border: none;
   padding: 10px 15px;
   cursor: pointer;
