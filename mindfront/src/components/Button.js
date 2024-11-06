@@ -82,4 +82,4 @@ const Boton = styled.div`
     transform: rotate(-45deg);
     top: 13px;
   }
-`;
+`

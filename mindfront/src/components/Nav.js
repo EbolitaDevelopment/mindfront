@@ -1,22 +1,30 @@
-import React from 'react';
+
 import styled from 'styled-components';  // Correct import
-import { Button } from './Button';      // Make sure Button exists at this path
+import React, { useState } from 'react';
 
 const Nav = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Función para alternar el estado de la barra de navegación
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Navar>
-      <Button />
-      <div className="lista">
-        <a href="/" aria-label="Proposito">Propósito</a>
-        <a href="/" aria-label="Retos">Retos</a>
-        <a href="/" aria-label="Juegos">Juegos</a>
-        <a href="/" aria-label="Canalizacion">Canalización</a>
-        <a href="/" aria-label="Cuenta">Cuenta</a>
-      </div>
-      <div className="auth-links">
-        <a href='/'><h2>Iniciar sesión</h2></a>
-        <a href='/'><h2>Registrarse</h2></a>
-      </div>
+      <div>
+      <button className="menu-toggle" onClick={toggleMenu}>
+        ☰
+      </button>
+      <nav className={`navbar ${isOpen ? 'open' : ''}`}>
+        <ul className="nav-links">
+          <li><a href="#home">Inicio</a></li>
+          <li><a href="#about">Sobre mí</a></li>
+          <li><a href="#services">Servicios</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
     </Navar>
   );
 }
@@ -24,57 +32,71 @@ const Nav = () => {
 export default Nav;
 
 const Navar = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.4rem;
-  background-color: #b0c4de;
+ * {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
 
-  /* Styling for the Authentication section */
-  .auth-links {
-    display: flex;
-    gap: 1rem;
-  }
+/* Estilo del botón de menú (ícono de hamburguesa) */
+.menu-toggle {
+position: fixed;
+top: 0px;
+left: 0px;
+width: 550 px;
+background-color: #333;
+color: white;
+font-size: 30px;
+border: none;
+padding: 10px 15px;
+cursor: pointer;
+z-index: 1000; /* Asegura que el botón esté encima del menú */
+}
 
-  h2 {
-    color: white;
-    font-weight: bold;
-    margin: 0;
-  }
+.menu-toggle:hover {
+background-color: #444;
+}
 
-  /* Styling for the links */
-  .lista {
-    display: flex;
-    gap: 1rem;
-  }
+/* Barra de navegación (oculta por defecto) */
+.navbar {
+position: fixed;
+top: 0;
+left: 0;
+width: 20%;
+background-color: #7c97cb;
+height: 0; /* Empieza oculta */
+overflow: hidden;
+transition: height 0.3s ease-in-out;
+z-index: 999;
+}
 
-  a {
-    color: white;
-    text-decoration: none;
-    margin-right: 1rem;
-    font-weight: bold;
-  }
+/* Estilos cuando la barra está abierta (estado "open") */
+.navbar.open {
+height: 100%; /* Ajusta la altura dependiendo de cuántos elementos tenga tu menú */
+}
 
-  /* Optional: Responsiveness for mobile */
-  @media (max-width: 768px) {
-    flex-direction: column;
-    text-align: center;
-    
-    .auth-links {
-      margin-bottom: 1rem;
+/* Estilo de los enlaces de navegación */
+.nav-links {
+list-style: none;
+padding: 20px 0;
+margin: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
 
-      h2{
-        font-size:1rem;      
-      }
-    }
+.nav-links li {
+margin: 15px 0;
+}
 
-    .lista {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+.nav-links a {
+color: white;
+text-decoration: none;
+font-size: 20px;
+transition: color 0.3s ease;
+}
 
-    a {
-      margin-right: 0;
-    }
-  }
+.nav-links a:hover {
+color: #f39c12;
+}
 `;

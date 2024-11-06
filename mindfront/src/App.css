@@ -6,8 +6,17 @@
   height: 40vmin;
   pointer-events: none;
 }
-
 .App-header {
+  background-color: #b0c4de;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 0%;
+  margin: 0%;
+}
+.App-body{
   background-color: #b0c4de;
   display: flex;
   flex-direction: column;
@@ -15,4 +24,8 @@
   justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 0%;
+  margin: 0%;
+  margin: 0;
+  height: 92.5vh;
 }
