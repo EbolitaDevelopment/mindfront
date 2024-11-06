@@ -18,10 +18,13 @@ const Nav = () => {
       </button>
       <nav className={`navbar ${isOpen ? 'open' : ''}`}>
         <ul className="nav-links">
-          <li><a href="#home">Inicio</a></li>
-          <li><a href="#about">Sobre mí</a></li>
-          <li><a href="#services">Servicios</a></li>
-          <li><a href="#contact">Contacto</a></li>
+          <li></li>
+          <li></li>
+          <a href="#home"><button>Inicio</button></a>
+          <a href="#home"><button>Inicio</button></a>
+          <a href="#home"><button>Inicio</button></a>
+          <a href="#home"><button>Inicio</button></a>
+          <a href="#home"><button>Inicio</button></a>
         </ul>
       </nav>
     </div>
