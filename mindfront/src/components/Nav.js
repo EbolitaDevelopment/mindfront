@@ -26,7 +26,7 @@ const Nav = () => {
           <ul className="nav-links">
             <li><a href="/Proposito">Propósito</a></li>
             <li><a href="/retos">Retos</a></li>
-            <li><a href="/juegos">Juegos</a></li>
+            <li><a href="/Juegos">Juegos</a></li>
             <li><a href="/canalizacion">Canalización</a></li>
             <li><a href="/cuenta">Cuenta</a></li>
           </ul>

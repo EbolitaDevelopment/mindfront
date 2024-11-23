@@ -9,6 +9,7 @@ import Sesiones from './components/sesiones';
 import Nav from './components/Nav';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Proposito from './components/proposito';
+import Juegos from './screen/Juegos';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/procesocompleto" element={<Pcompleto />} />
           <Route path="/procesoincompleto" element={<Pincompleto />} />
           <Route path="/proposito" element={<Proposito />} />
+          <Route path="/juegos" element={< Juegos />} />
           
         </Routes>
       </div>
