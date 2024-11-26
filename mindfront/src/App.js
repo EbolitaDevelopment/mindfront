@@ -10,6 +10,8 @@ import Nav from './components/Nav';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Proposito from './components/proposito';
 import Juegos from './screen/Juegos';
+import Canalizacion from './screen/Canalizacion';
+import Cuenta from './screen/Cuenta';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="/procesoincompleto" element={<Pincompleto />} />
           <Route path="/proposito" element={<Proposito />} />
           <Route path="/juegos" element={< Juegos />} />
+          <Route path="/canalizacion" element={< Canalizacion />} />
+          <Route path='/cuenta' element={<Cuenta />}/>
           
         </Routes>
       </div>
