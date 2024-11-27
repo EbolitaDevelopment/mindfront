@@ -1,31 +1,33 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Introduccion = () => {
+const Isesion = () => {
   return (
-    <Intro>
+    <Sesion>
      <div class="central">
-        <div class="imagen">
-            <h1>CREA TU CUENTA</h1>
-            <h2>Regístrate</h2>
-            <img src="IMG_1581.png" alt="" />
-        </div>
-        <div class="tIS">
-        <input type="text" class="botonesp" placeholder="Mail" />
-            <input type="text" class="botonesp" placeholder="Nombre Completo" />
-            <input type="text" class="botonesp" placeholder="Crear Contraseña" />
-            <input type="text" class="botonesp" placeholder="Verificar Contraseña" />
-            <button class="botonesS">Crear Cuenta</button>
-        </div>
-     </div>
-    </Intro>
+
+<div class="tIS">
+    <h1>INICIA SESIÓN</h1>
+    <h2>Ingresa tu cuenta de MINDLOOSE</h2>
+    <input type="text" class="botonesp" placeholder="Mail" />
+    <input type="text" class="botonesp" placeholder="Contraseña" />
+    <a href='/procesocompleto'><button class="botonesS">Iniciar sesión</button></a>
+    
+</div>
+
+<div class="imagen">
+    <img src="IMG_1581.png" alt="" />
+</div>
+
+</div>
+    </Sesion>
   )
 }
 
-export default Introduccion
+export default Isesion
 
-const Intro = styled.div`
-        @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+const Sesion= styled.div
+`@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
         .font-style-title {font-family:'League Spartan', sans-serif !important; } 
         .font-style-subtitle {font-family: 'League Spartan', sans-serif !important; } 
         .font-style-heading {font-family: 'League Spartan', sans-serif !important; } 
@@ -123,5 +125,8 @@ const Intro = styled.div`
         }
         .iIS{
         width: 75%;
+        }
+        *{
+        text-decoration:none;
         }
 `

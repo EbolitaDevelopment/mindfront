@@ -1,14 +1,15 @@
 import './App.css';
-import Introduccion from './components/Introduccion';
-import Cuestionario from './components/Cuestionario';
-import Isesion from './components/iniciosesion';
-import Registro from './components/registro';
-import Pcompleto from './components/procesocompleto';
-import Pincompleto from './components/procesoincompleto';
-import Sesiones from './components/sesiones';
-import Nav from './components/Nav';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Proposito from './components/proposito';
+import Introduccion from './screen/Introduccion';
+import Cuestionario from './screen/Cuestionario';
+import Terminosycondiciones from './screen/Terminosycondiciones';
+import Isesion from './screen/iniciosesion';
+import Registro from './screen/registro';
+import Pcompleto from './screen/procesocompleto';
+import Pincompleto from './screen/procesoincompleto';
+import Sesiones from './screen/sesiones';
+import Nav from './components/Nav';
+import Proposito from './screen/proposito';
 import Juegos from './screen/Juegos';
 import Canalizacion from './screen/Canalizacion';
 import Cuenta from './screen/Cuenta';
@@ -27,6 +28,7 @@ function App() {
           <Route path="/registro" element={< Registro/>} />
           <Route path="/iniciosesion" element={<Isesion />} />
           <Route path="/cuestionario" element={<Cuestionario/>} />
+          <Route path='/terminosycondiciones' element={<Terminosycondiciones/>}/>
           <Route path="/procesocompleto" element={<Pcompleto />} />
           <Route path="/procesoincompleto" element={<Pincompleto />} />
           <Route path="/proposito" element={<Proposito />} />
