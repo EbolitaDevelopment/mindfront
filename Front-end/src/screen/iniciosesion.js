@@ -1,33 +1,102 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styled from 'styled-components'
 
-const Introduccion = () => {
+const Isesion = () => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+      });
+    
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+          ...prevState,
+          [name]: value
+        }));
+      };
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+      
+        try {
+          // Realizamos la petición POST al backend
+          const res = await fetch("http://localhost:4000/api/isesion", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+      
+          // Parseamos la respuesta en formato JSON
+          const resJson = await res.json();
+      
+          // Si la respuesta es exitosa
+          if (resJson.status === "ok") {
+            const { token, clave } = resJson.body;
+      
+            // Establecemos la cookie manualmente en el navegador (aunque el servidor ya la ha establecido con Set-Cookie)
+            const expirationTime = new Date(Date.now() + parseInt(process.env.JWT_COOKIE_EXPIRES, 10) * 24 * 60 * 60 * 1000);
+            document.cookie = `${clave}=${token}; expires=${expirationTime.toUTCString()}; path=/`;
+      
+            // Opcional: Verificar que la cookie esté correctamente establecida
+            console.log(document.cookie); // Para depuración
+      
+            // Redirigir al usuario si el servidor indica una URL de redirección
+            if (resJson.redirect) {
+              window.location.href = resJson.redirect;
+            }
+          } else {
+            alert(resJson.message || "Error en el registro");
+          }
+      
+        } catch (error) {
+          console.error("Error en el registro:", error);
+          alert("Hubo un problema con el inicio de sesión");
+        }
+      };
+          
   return (
-    <Intro>
+    <Sesion>
      <div class="central">
-        <div class="imagen">
-            <h1>CREA TU CUENTA</h1>
-            <h2>Regístrate</h2>
-            <img src="IMG_1581.png" alt="" />
-            <p>Antes de crear nuestra cuenta asegurate de leer nuestros Terminos y Condiciones</p><p>asi como tambien nuestra Politica de Privacidad</p>
-        </div>
-        <div class="tIS">
-        <input type="text" class="botonesp" placeholder="Mail" />
-            <input type="text" class="botonesp" placeholder="Nombre Completo" />
-            <input type="text" class="botonesp" placeholder="Crear Contraseña" />
-            <input type="text" class="botonesp" placeholder="Verificar Contraseña" />
-            
-             <button class="botonesS">Crear Cuenta</button>
-        </div>
-     </div>
-    </Intro>
+
+<div class="tIS">
+    <h1>INICIA SESIÓN</h1>
+    <h2>Ingresa tu cuenta de MINDLOOSE</h2>
+    <form id='FISesion' onSubmit={handleSubmit}>
+    <input 
+    class="botonesp" 
+    placeholder="Mail" 
+    type="email" 
+    name="email"
+    className="botonesp" 
+    value={formData.email}
+    onChange={handleChange}
+    required />
+    <input 
+    type="password" 
+    name="password"
+    className="botonesp" 
+    placeholder="Crear Contraseña"
+    value={formData.password}
+    onChange={handleChange}
+    required />
+    <button class="botonesS" type='submit'>Iniciar sesión</button></form>
+</div>
+
+<div class="imagen">
+    <img src="IMG_1581.png" alt="" />
+</div>
+
+</div>
+    </Sesion>
   )
 }
 
-export default Introduccion
+export default Isesion
 
-const Intro = styled.div`
-        @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+const Sesion= styled.div
+`@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
         .font-style-title {font-family:'League Spartan', sans-serif !important; } 
         .font-style-subtitle {font-family: 'League Spartan', sans-serif !important; } 
         .font-style-heading {font-family: 'League Spartan', sans-serif !important; } 
@@ -49,7 +118,7 @@ const Intro = styled.div`
             text-align: center;
         }
         p {
-            font-size: 15px;
+            font-size: 25px;
             color: black;
         }
         
@@ -125,8 +194,5 @@ const Intro = styled.div`
         }
         .iIS{
         width: 75%;
-        }
-        *{
-         text-decoration:none;
         }
 `

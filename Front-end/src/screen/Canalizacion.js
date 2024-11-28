@@ -35,6 +35,7 @@ const Can = styled.nav`
         .font-style-normalText {font-family: 'League Spartan', sans-serif !important; }
 *{
     background-color: #f7eedd;
+    margin:5%;
 }
 body{
     padding: 0;
@@ -50,7 +51,7 @@ h1{
 p{
     font-size: 25px;
     color: black;
-    
+    text-align: justify;
 }
 .principal{
     display: flex;
@@ -76,7 +77,6 @@ p{
     flex: 1;
 }
 .buttons-section {
-  position: absolute; 
   bottom: 20px; 
   right: 20px; 
   display: flex;
