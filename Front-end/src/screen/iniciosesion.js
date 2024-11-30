@@ -105,6 +105,7 @@ const Sesion= styled.div
         * {
             background-color: #f7eedd;
             font-family: League Spartan;
+            margin: 0;
         }
         
         h1 {
@@ -122,77 +123,57 @@ const Sesion= styled.div
             color: black;
         }
         
-        .principal {
-            display: flex;
-            justify-content: space-between;
-            padding: 0;
-        }
-        
-        .contenedor {
-            width: 45%;
-            display: flex;
-            justify-content: space-around;
-        }
-        
-        .centro {
-            vertical-align: middle;
-        }
-        
         .central {
-            display: flex;
-            justify-content: space-around;
+            display: grid;
+            margin: 0 ;
+            grid-template-columns: 40% 40%; /* Divide el contenedor en dos columnas iguales */;
+            gap:20%;
             padding: 0;
             align-items: center; /* Alinea verticalmente */
             height: 100vh;
-            width: 100vw; /* Ocupa toda la altura de la ventana */
+            width: 80vw; /* Ocupa toda la altura de la ventana */
             text-align: center; /* Centra el texto dentro del contenedor */
         }
         
         .central div {
             flex: 1;
-        }
-        
-        .botonesp {
-            width: 60%;
-            background-color: #ace2e1;
-            border: 0;
-            padding: 25px;
-            color: black;
-            border-radius: 100px;
-            font-size: 25px;
-            margin: 10px 0; /* Espacio entre los inputs */
-            display: block; /* Asegura que el input se comporte como un bloque */
-            margin-left: auto; /* Centra el input horizontalmente */
-            margin-right: auto; /* Centra el input horizontalmente */
-        }
-        
-        input.botonesp::placeholder {
-            color: black;
-            font-family: League Spartan;
-            text-align: center;
-        }
-        
-        .botonesS {
-            width: 70%;
-            background-color: #f95f5e;
-            border: 0;
-            padding: 30px;
-            color: white;
-            font-family: League Spartan;
-            border-radius: 100px;
-            font-size: 25px;
-            cursor: pointer;
-            display: block; /* Asegura que el botón se comporte como un bloque */
-            margin-left: auto; /* Centra el botón horizontalmente */
-            margin-right: auto; /* Centra el botón horizontalmente */
-        }
-     
-        .imagen {
-            vertical-align: middle;
-            align-items: right;
-            width:25%
-        }
-        .iIS{
-        width: 75%;
-        }
+        }  
+    .botonesp {
+      width: 80%;
+      background-color: #ace2e1;
+      border: 0;
+      margin: 10px 0;
+      padding: 8%;
+      color: black;
+      border-radius: 150px;
+      font-size: 1rem;
+      text-align: center;
+    }
+  
+    input::placeholder {
+      color: BLACK;
+      font-size:1.3rem;
+      font-family: 'League Spartan', sans-serif;
+    }
+  
+    .botonesS {
+      width: 100%;
+      background-color: #008dda;
+      border: 0;
+      margin-top: 20px;
+      padding: 8%;
+      color: #ace2e1;
+      font-size:1.3rem;
+      font-family: 'League Spartan', sans-serif;
+      border-radius: 150px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .botonesp:hover {
+      color: #008dda;
+    }
+    .botonesS:hover {
+      background-color: #009dda;
+      color: #fff;
+    }
 `

@@ -4,7 +4,7 @@ const Isesion = () => {
   return (
 <Styles>
      <div class="central">
-    <p><a href='/iniciosesion'>INICIAR SESIÓN</a>   <a href='registro'>CREAR SESIÓN</a></p>
+    <p><a href='/iniciosesion'>INICIAR SESIÓN</a>   <a href='registro'>CREAR CUENTA</a></p>
 </div>
 </Styles>
   )
@@ -23,6 +23,7 @@ const Styles = styled.nav`
         }
 .central{
 width:100%;
+align-items:right;
 text-align: right;
 color: :#008dda;
 }

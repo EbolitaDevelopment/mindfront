@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Cookies from 'js-cookie';
 
 const Cuestionario = () => {
   const [formValues, setFormValues] = useState({
     a: '', b: '', c: '', d: '', e: '', f: '', g: '', h: '', 
-    i: '', j: '', k: '', l: '', m: '', n: '', o: '', p: '', 
+    i: '', j: '', k: '', l: '', n: '', o: '', p: '', 
     q: '', r: '', s: '', t: '', u: '', v: '', w: '', x: '', 
     y: '', z: ''
   });
@@ -73,8 +74,14 @@ const Cuestionario = () => {
 
     const result = calculateLevel(formValues);
     if (!result) return;
-    const user = getCookie("jwt");
+    
     try {
+      
+        const token = Cookies.get('jwt');
+
+      if (!token) {
+        throw new Error("No se encontró la cookie JWT");
+      }
       const res = await fetch("http://localhost:4000/api/cuestionario", {
         method: "POST",
         headers: {
@@ -83,7 +90,7 @@ const Cuestionario = () => {
         body: JSON.stringify({
           nivel: result.nivel,
           suma: result.suma,
-          user: user
+          cookie: token
         })
       });
 
@@ -100,233 +107,215 @@ const Cuestionario = () => {
   return (
     <Quest>
       <form onSubmit={handleSubmit} className="wrapper">
-        <center><p className="subtitle">CUESTIONARIO</p></center>
+        <h1>CUESTIONARIO</h1>
         <div className="top-section">
-          <div className="left-column">
-            <div className="description">
-              <b>EN EL PRESENTE DOCUMENTO SE EVALUARIA DE MANERA APROXIMADA LA INTENSIDAD DE LA AGORAFOBIA PRESENTADA
-
-              <br/><br/>SECCIÓN 1:</b> Señale con qué frecuencia evita los lugares, o situaciones que se te indican a continuación tomando en cuenta el nivel de malestar que le producen. 
-              <br/><br/>
-              Utilice la escala y rellene acorde al nivel de malestar que le producen:
-             
-              <br/><br/>0=no me produce malestar
-              <br/>1=me produce poco malestar
-              <br/>2=me molesta
-              <br/>3=me incomoda bastante
-              <br/>4=no lo soporto
-            </div>
+          <p className='subtitle'>
+            EN EL PRESENTE DOCUMENTO SE EVALUARA DE MANERA APROXIMADA LA INTENSIDAD DE LA AGORAFOBIA PRESENTADA
+          </p>
+          <p>
+            SECCIÓN 1: Señale con qué frecuencia evita los lugares, o situaciones que se te indican a continuación tomando en cuenta el nivel de malestar que le producen.
+            utilice la siguiente escala :
+          </p>
+          <p><table>
+          <td>
+            0=no me produce malestar</td>
+            <td>1=me produce poco malestar</td>
+            <td>2=me molesta</td>
+            <td>3=me incomoda bastante</td>
+            <td>4=no lo soporto</td></table></p>
           </div>
-
-          <div className="right-column">
-            <div className="table-container">
-              <table>
-                <tbody>
-                  <tr>
-                    <td colSpan={2} className='title'>LUGARES:</td>
-                  </tr>
-                  {[
-                    ['Grandes almacenes', 'a'], 
-                    ['Bares y restaurantes', 'b'], 
-                    ['Cines', 'c'], 
-                    ['Teatros', 'd'], 
-                    ['Supermercados', 'e'], 
-                    ['Clases', 'f'], 
-                    ['Restaurantes', 'g'], 
-                    ['Museos', 'h'], 
-                    ['Ascensores', 'i'], 
-                    ['Auditorios o estadios', 'j'], 
-                    ['Aparcamientos o garajes', 'k'], 
-                    ['Exterior (ej. campo, calles amplias, patios)', 'l'], 
-                    ['Interior (ej. habitaciones grandes, pasillos)', 'm']
-                  ].map(([label, id]) => (
-                    <tr key={id}>
-                      <td width="91%">{label}:</td>
-                      <td>
-                        <input 
-                          type="text" 
-                          pattern="[0-4]" 
-                          maxLength="1" 
-                          required 
-                          id={id}
-                          value={formValues[id]}
-                          onChange={handleInputChange}
-                        />
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div className="bottom-section">
-          <div className="table-container">
-            <table>
-              <tbody>
-                <tr>
-                  <td colSpan={2} className='title'>SITUACIONES:</td>
-                  <td colSpan={2} className='title'>TELETRANSPORTES:</td>
-                </tr>
+          <div className="content">
+          
+            <div>
+                <p className="title">LUGARES:</p>
                 {[
-                  ['Estar en fila', 'n', 'Autobuses', 'o'],
-                  ['Cruzar puentes', 'p', 'Trenes', 'q'],
-                  ['Caminar por la calle', 'r', 'Metro', 's'],
-                  ['Estar en casa solo', 't', 'Aviones', 'u'],
-                  ['Estar lejos de casa', 'v', 'Barcos', 'w'],
-                  ['Fiestas o encuentros sociales', 'x', 'Conducir o viajar en coche', 'z']
-                ].map(([label1, id1, label2, id2]) => (
-                  <tr key={`${id1}-${id2}`}>
-                    <td width="46%">{label1}</td>
-                    <td width="4%">
-                      <input 
-                        type="text" 
-                        pattern="[0-4]" 
-                        maxLength="1" 
-                        required 
-                        id={id1}
-                        value={formValues[id1]}
-                        onChange={handleInputChange}
-                      />
-                    </td>
-                    <td width="46%">{label2}</td>
-                    <td width="4%">
-                      <input 
-                        type="text" 
-                        pattern="[0-4]" 
-                        maxLength="1" 
-                        required 
-                        id={id2}
-                        value={formValues[id2]}
-                        onChange={handleInputChange}
-                      />
-                    </td>
-                  </tr>
+                  ['Grandes almacenes', 'a'],
+                  ['Bares y restaurantes', 'b'],
+                  ['Cines', 'c'],
+                  ['Teatros', 'd'],
+                  ['Supermercados', 'e'],
+                  ['Clases', 'f'],
+                  ['Restaurantes', 'g'],
+                  ['Museos', 'h'],
+                  ['Ascensores', 'i'],
+                  ['Auditorios o estadios', 'j'],
+                  ['Aparcamientos o garajes', 'k'],
+                  ['Exterior (ej. campo, calles amplias, patios)', 'l']
+                ].map(([label, id]) => (
+                  <p key={id}>
+                    {label}:
+                    <input
+                      type="text"
+                      pattern="[0-4]"
+                      maxLength="1"
+                      required
+                      id={id}
+                      value={formValues[id]}
+                      onChange={handleInputChange}
+                    />
+                  </p>
                 ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="note">
+              </div>
+              <div>
+              <p className="title">SITUACIONES:</p>
+              <p>
+                {[
+                  ['Estar en fila', 'n'],
+                  ['Cruzar puentes', 'p'],
+                  ['Caminar por la calle', 'r'],
+                  ['Estar en casa solo', 't'],
+                  ['Estar lejos de casa', 'v'],
+                  ['Fiestas o encuentros sociales', 'x']
+                ].map(([label, id]) => (
+                  <p key={id}>
+                    {label}:
+                    <input
+                      type="text"
+                      pattern="[0-4]"
+                      maxLength="1"
+                      required
+                      id={id}
+                      value={formValues[id]}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                ))}
+              </p>
+              </div>
+              <div>
+              <p className="title">TELETRANSPORTES:</p>
+              <p>
+                {[
+                  ['Autobuses', 'o'],
+                  ['Trenes', 'q'],
+                  ['Metro', 's'],
+                  ['Aviones', 'u'],
+                  ['Barcos', 'w'],
+                  ['Conducir o viajar en coche', 'z']
+                ].map(([label, id]) => (
+                  <p key={id}>
+                    {label}:
+                    <input
+                      type="text"
+                      pattern="[0-4]"
+                      maxLength="1"
+                      required
+                      id={id}
+                      value={formValues[id]}
+                      onChange={handleInputChange}
+                    />
+                  </p>
+                ))}
+              </p>
+             </div>
+            </div>
             <p>
-              <br/><br/>Indicar el número total de ataques de pánico que se han tenido en los 7 últimos días, teniendo en cuenta que se define un ataque de pánico como un conjunto de las siguientes situaciones:
-              <br/><br/>
-              (1)Un alto nivel de ansiedad 
-              <br/><br/>
-              (2)Reacciones corporales intensas (palpitaciones del corazón, sudoración, temblores musculares, mareos, náuseas) 
-              <br/><br/>
-              (3)Pérdida transitoria de la capacidad de planificar, pensar o razonar 
-              <br/><br/>
+              <br /><br />Indicar el número total de ataques de pánico que se han tenido en los 7 últimos días, teniendo en cuenta que se define un ataque de pánico como un conjunto de las siguientes situaciones:
+              <br /><br />
+              (1)Un alto nivel de ansiedad
+              <br /><br />
+              (2)Reacciones corporales intensas (palpitaciones del corazón, sudoración, temblores musculares, mareos, náuseas)
+              <br /><br />
+              (3)Pérdida transitoria de la capacidad de planificar, pensar o razonar
+              <br /><br />
               (4)Un intenso deseo de escapar o huir de la situación. (Esta última característica es lo que diferencía el ataque de pánico de los altos niveles de ansiedad o miedo).
-              
-              <input 
-                type="text" 
-                pattern="[0-4]" 
-                maxLength="1" 
-                required 
+              <input
+                type="text"
+                pattern="[0-4]"
+                maxLength="1"
+                required
                 id="y"
                 value={formValues.y}
                 onChange={handleInputChange}
               />
             </p>
-          </div>
-
+         
+  
           <button type="submit" className="create-account-btn">CREAR CUENTA</button>
-        </div>
+       
       </form>
     </Quest>
-  );
-};
+  );}
+  
 
 export default Cuestionario;
 
 const Quest = styled.nav`
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .top-section {
-    display: flex;
-    height: 100vh;
-
-  }
-
-  .left-column, .right-column {
-    width: 50%;
-    height:100%;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-
-  .bottom-section {
-    height: 100vh;
-    padding:10px;
-  }
-
-  .subtitle {
-    color: #f95f5e;
-    font-weight: bold;
-    font-size:5vh;
-    text- align : center
-    margin-bottom: 15px;
-  }
-    .title {
-    color: black;
-    font-weight: bold;
-    font-size:2vh;
-    text- align : center
-    margin-bottom: 15px;
-  }
+   @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+        .font-style-title {font-family:'League Spartan', sans-serif !important; } 
+        .font-style-subtitle {font-family: 'League Spartan', sans-serif !important; } 
+        .font-style-heading {font-family: 'League Spartan', sans-serif !important; } 
+        .font-style-normalText {font-family: 'League Spartan', sans-serif !important; }
+*{
+    background-color: #f7eedd;
+    margin-right:5%;
+    margin-left:5%;
+}
+    table{
+    margin:0;
+    width:100%;
+    text-align:center;
+    font-weight: bolder;
+    color: #008dda;
     }
 
-  .description {
-  width:100%
-    font-size: 14px;
-    margin-bottom: 20px;
-    text-align : justify;
-    color : black
-  }
+h1{
+    font-size: 7vh;
+    color: #008dda;
+    text-align: center;
+    margin-bottom: 1%;
 
-  .table-container {
-    width:100%;
-    height:AUTO;
-    
-    
-  }
+}
+    .hospital-info {
+    margin:0;
+    }
+    .hospital-info p, .hospital-info h2{
+    margin-left:0;
+    }
+    h2{
+    font-size: 5vh;
+    color: #008dda;
+    text-align: left;
+    margin-bottom: 1%;
 
-  table {
-    border-radius: 1%;
-    width: 100%;
-    background-color: #e6eef9;
+}
+p{
+    font-size: 2.7vh;
     color: black;
-    font-size: 12px;
-  }
+    text-align: justify;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+.content{
+  height:88.7vh;
 
-  td {
-    padding: 8px;
-    color: black;
-  }
+    display: grid;
+    grid-template-columns: 33% 33% 33%; /* Divide el contenedor en dos columnas iguales */;
+    gap:8%;
+    }
+    .content div {
+  margin :0;
+    }
 
-  .create-account-btn {
-    background-color: #f95f5e;
-    color: black;
-    padding: 2%;
-    width: 25%;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .note {
-    font-size: 12px;
-    margin: 20px 0;
-    color: black;
+  .button , .input{
+            width: 100%;
+            background-color: #ace2e1;
+            border: 0;
+            margin-top: 10%;
+            margin-bottom: 10%;
+            padding: 10%;
+            color: #008dda;
+            font-family: League Spartan;
+            border-radius: 100px;
+            font-size: 3.3vh;
+            cursor: pointer;
+            display: block; 
+            
+        }
+    .button:hover {
+    background-color: #008dda;
+    color: #ace2e1;
   }
 
 input {
@@ -339,6 +328,11 @@ input {
     border: 2px solid #b3c6e7;
     color: black;
     text-align: center;
+}
+.subtitle{
+  font-weight: bolder;
+  text-align: center;
+  
 }
 
 `;

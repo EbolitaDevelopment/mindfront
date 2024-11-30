@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Progreso from '../components/progreso';
 const Juegos = () => {
   return (
     <Juego>
@@ -17,14 +18,14 @@ const Juegos = () => {
           <div >
           <img src="memorama.png" alt="Mindloose logo" /></div>
           <div><h3>MEMORAMA</h3>
-          <a href='Memorama.js'><button class="botonesS" type='submit'>Afecciones (vista científica)</button></a>
+          <button class="botonesS" type='submit'>Afecciones (vista científica)</button>
           <button class="botonesS" type='submit'>Afecciones (vista social)</button>
           <button class="botonesS" type='submit'>Física en el cerebro</button></div>
         </div>
         <div className='progreso'>
           
         <h3>PROGRESO</h3>
-        </div>
+        <Progreso /></div>
       </div>
       
   </div></Juego>
@@ -45,7 +46,6 @@ const Juego = styled.nav`
     margin : 0;
     } 
     .orden {
-    padding-top: 3%; 
     display: grid;
     grid-template-columns: 46% 46%; /* Divide el contenedor en dos columnas iguales */;
     width: 100%;
@@ -113,7 +113,7 @@ text-align:center;
     margin-right: 7%;
     justify-content: space-between;
     padding: 0;
-    height: 87.8vh;
+    height: 88.4vh;
 
 }
     img{

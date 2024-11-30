@@ -70,7 +70,7 @@ const Navar = styled.nav`
   .menu-toggle {
   background-color: #444;
   color: white;
-  font-size: 10vh; 
+  font-size: 7vh; 
   font-weight: lighter;
   border: none;
   height: 12vh;   /* Aumenta la altura del botón */
@@ -162,7 +162,7 @@ const Navar = styled.nav`
     padding: 15%;
     font-family: League Spartan;
     border-radius: 50px;
-    font-size: 25px;
+    font-size: 2.5vh;
     cursor: pointer;
   }
   .nav-links a {
@@ -175,6 +175,7 @@ const Navar = styled.nav`
 
   .nav-links button:hover {
     background-color: #8a9bcf;
+    color: orange;
   }
 
 

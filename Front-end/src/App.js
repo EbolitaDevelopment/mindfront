@@ -13,8 +13,10 @@ import Juegos from './screen/Juegos';
 import Japi from './components/post';
 import Canalizacion from './screen/Canalizacion';
 import Cuenta from './screen/Cuenta';
-import Politicadeprivacidad from './screen/TerminosyCondiciones';
-import Terminosycondiciones from './screen/PoliticadePrivacidad';
+import Politicadeprivacidad from './screen/PoliticadePrivacidad';
+import Terminosycondiciones from './screen/TerminosyCondiciones';
+import Retos from './screen/Retos';
+import Memorama from './screen/Memoramas';
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
           <Route path="/cuenta" element={< Cuenta />} />
           <Route path="/terminosycondiciones" element={< Terminosycondiciones />} />
           <Route path="/politicadeprivacidad" element={< Politicadeprivacidad />} />
+          <Route path="/retos" element={< Retos />} />
+          <Route path="/memorama" element={< Memorama />} />
           
         </Routes>
       </div>
