@@ -1,33 +1,159 @@
-import React from 'react'
-import styled from 'styled-components';  // Correct import
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
 const Canalizacion = () => {
+  const [hospital, setHospital] = useState({
+    nombre: '',
+    estado: '',
+    locacion: ''
+  });
+
+  const [selectedState, setSelectedState] = useState('');
+
+  const hospitales = [
+    {
+      nombre: "Hospital Psiquiátrico Fray Bernardino Álvarez",
+      estado: "Ciudad de México",
+      municipio: "Tlalpan",
+      colonia: "Tlalpan",
+      direccion: "Calle Niño Jesús No. 2",
+      telefono: "55-5655-4405",
+      correoElectronico: "rosa.pazaran@salud.gob.mx"
+    },
+    {
+      nombre: "Hospital Psiquiátrico Infantil Dr. Juan N. Navarro",
+      estado: "Ciudad de México", 
+      municipio: "Tlalpan",
+      colonia: "Belisario Domínguez",
+      direccion: "San Buenaventura No. 86",
+      telefono: "55-5573-4844",
+      correoElectronico: "emmanuel.sarmiento@salud.gob.mx"
+    },
+    {
+      nombre: "Hospital Psiquiátrico Dr. Samuel Ramírez Moreno",
+      estado: "Ciudad de México",
+      municipio: "Tláhuac",
+      colonia: "Santa Catarina",
+      direccion: "Km 5.5 Autopista México-Puebla",
+      telefono: "55-5860-1530",
+      correoElectronico: "cesar.banuelos@salud.gob.mx"
+    },
+    {
+      nombre: "Hospital Psiquiátrico Dr. Adolfo M. Nieto",
+      estado: "Estado de México",
+      municipio: "Acolman",
+      colonia: "Tepexpan",
+      direccion: "Carr. Fed. México Pirámides Km.32.5",
+      telefono: "594-957-0003",
+      correoElectronico: "direccion.hmnieto@hotmail.com"
+    },
+    {
+      nombre: "Hospital Psiquiátrico José Sayago",
+      estado: "Estado de México", 
+      municipio: "Acolman",
+      colonia: "Tepexpan",
+      direccion: "Carr. Fed. México - Pirámides Km.33.5",
+      telefono: "594-957-1836",
+      correoElectronico: "hospitaljosesayago@hotmail.com"
+    },
+    {
+      nombre: "Hospital Psiquiátrico Granja La Salud",
+      estado: "Estado de México",
+      municipio: "Ixtapaluca", 
+      colonia: "Zoquiapan",
+      direccion: "Carr. Fed. México-Puebla K, 33.5",
+      telefono: "55-5972-0028",
+      correoElectronico: "granjalasalud@yahoo.com"
+    },
+    {
+      nombre: "Hospital Psiquiátrico Villa Ocaranza",
+      estado: "Hidalgo",
+      municipio: "Tolcayuca",
+      colonia: "San Miguel Eyecalco", 
+      direccion: "Carretera México Pachuca Km. 62.5",
+      telefono: "743-791-3116",
+      correoElectronico: "villaocaranza@hotmail.com"
+    },
+    {
+      nombre: "Hospital Psiquiátrico Dr. Rafael Serrano",
+      estado: "Puebla",
+      municipio: "Heroica Puebla de Zaragoza", 
+      colonia: "Lomas de San Miguel",
+      direccion: "Carretera A Valsequillo Km 7.5",
+      telefono: "222-221-6139",
+      correoElectronico: "direccionpsiquiatricopuebla@hotmail.com"
+    }
+  ];
+
+  const cambioEstado = (e) => {
+    setSelectedState(e.target.value);
+  };
+
+  const mostrarHospital = () => {
+    // Encuentra el primer hospital del estado seleccionado
+    const hospitalEncontrado = hospitales.find(h => h.estado === selectedState);
+    
+    if (hospitalEncontrado) {
+      setHospital({
+        nombre: hospitalEncontrado.nombre,
+        estado: hospitalEncontrado.estado,
+        locacion: `${hospitalEncontrado.municipio}, ${hospitalEncontrado.colonia}`
+      });
+    } else {
+      setHospital({
+        nombre: '',
+        estado: '',
+        locacion: ''
+      });
+    }
+  };
+
   return (
     <Can>
-    <div class="content">
+    <div className="content">
       <h1>CANALIZACIÓN</h1>
-      <p class="description">
+      <p className="description">
         Si después de utilizar las herramientas que buscamos proporcionar no se siente ningún progreso y considera que está en un nivel avanzado de pánico social o generó algún tipo de trastorno psicológico como ansiedad elevada o depresión con niveles que requieren de medicinas, nuestro programa ya no será útil ya que más que una aplicación para curar es para aprender a llevar las tensiones que la afección puede provocar en una vida cotidiana y a prevenir que escale a niveles que requieran de atención médica formal debido a trastornos generados por la misma.
-        <br/>
-        <br/>
-        Para poder seguir ayudando a los usuarios de nuestra plataforma aunque no sea con el servicio, en esta sección presentamos algunas propuestas de atención médica formal tanto pública como privada para el tratamiento más avanzado de la afección. Dicha lista está proporcionada por el gobierno de México acerca de los hospitales psiquiátricos en todos los estados de la república, y su contacto tanto móvil como de correo.
+        <br/><br/>
+        Para poder seguir ayudando a los usuarios de nuestra plataforma aunque no sea con el servicio, en esta sección presentamos algunas propuestas de atención médica formal tanto pública como privada para el tratamiento más avanzado de la afección.
       </p>
       <div className='hospitales'>
-      <div class="hospital-info">
-        <h2>HOSPITALES CERCANOS</h2>
-        <p>ESTADO: XXX<br/>
-        UBICACIÓN: AV. XXX<br/>
-        NOMBRE: HOSPITAL XXX<br/>
-        AFILIACIÓN: GUBERNAMENTAL</p>
-      </div><div >
-        <button class="input">Seleccione su Estado</button>
-        <button class="button">Mostrar Locaciones</button>
+        <div className="hospital-info">
+          <h2>HOSPITALES CERCANOS</h2>
+          <p>
+            ESTADO: {hospital.estado}<br/>
+            UBICACIÓN: {hospital.locacion}<br/>
+            NOMBRE: {hospital.nombre}<br/>
+            AFILIACIÓN: GUBERNAMENTAL
+          </p>
+        </div>
+        <div>
+          <select 
+            name="selecthospital" 
+            className='input'
+            value={selectedState}
+            onChange={cambioEstado}
+          >
+            <option>Selecciona un Estado</option>
+            <option>Ciudad de México</option>
+            <option>Estado de México</option>
+            <option>Hidalgo</option>
+            <option>Puebla</option>
+          </select>
+          <button 
+            className="button" 
+            onClick={mostrarHospital}
+          >
+            Mostrar Locaciones
+          </button>
+        </div>
       </div>
-      </div>
-  </div></Can>
-  )
-}
+    </div>
+    </Can>
+  );
+};
 
-export default Canalizacion
+export default Canalizacion;
 const Can = styled.nav`
    @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
         .font-style-title {font-family:'League Spartan', sans-serif !important; } 
@@ -77,12 +203,10 @@ p{
 
   .button , .input{
             width: 100%;
-            background-color: #ace2e1;
             border: 0;
             margin-top: 10%;
             margin-bottom: 10%;
             padding: 10%;
-            color: #008dda;
             font-family: League Spartan;
             border-radius: 100px;
             font-size: 3.3vh;
@@ -90,9 +214,17 @@ p{
             display: block; 
             
         }
-    .button:hover {
+  select{
+   background-color: #ace2e1;
+    color: #008dda;
+  }
+    button{
     background-color: #008dda;
     color: #ace2e1;
+    }
+    .button:hover {
+    background-color: #009dda;
+      color: #fff;
   }
 
 .select-state-btn, .show-locations-btn {

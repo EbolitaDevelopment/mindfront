@@ -16,7 +16,6 @@ import Cuenta from './screen/Cuenta';
 import Politicadeprivacidad from './screen/PoliticadePrivacidad';
 import Terminosycondiciones from './screen/TerminosyCondiciones';
 import Retos from './screen/Retos';
-import Memorama from './screen/Memoramas';
 
 function App() {
   return (
@@ -41,7 +40,6 @@ function App() {
           <Route path="/terminosycondiciones" element={< Terminosycondiciones />} />
           <Route path="/politicadeprivacidad" element={< Politicadeprivacidad />} />
           <Route path="/retos" element={< Retos />} />
-          <Route path="/memorama" element={< Memorama />} />
           
         </Routes>
       </div>

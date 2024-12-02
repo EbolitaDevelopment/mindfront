@@ -85,7 +85,7 @@ const Isesion = () => {
 </div>
 
 <div class="imagen">
-    <img src="IMG_1581.png" alt="" />
+    <img src="logoML.png" alt="" />
 </div>
 
 </div>
@@ -127,7 +127,7 @@ const Sesion= styled.div
             display: grid;
             margin: 0 ;
             grid-template-columns: 40% 40%; /* Divide el contenedor en dos columnas iguales */;
-            gap:20%;
+            gap:25%;
             padding: 0;
             align-items: center; /* Alinea verticalmente */
             height: 100vh;
@@ -176,4 +176,11 @@ const Sesion= styled.div
       background-color: #009dda;
       color: #fff;
     }
+    img{  
+    width:60%;}
+    .imagen {
+    
+    text-align:left;
+  }
+  
 `

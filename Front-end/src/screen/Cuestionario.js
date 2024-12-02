@@ -5,9 +5,9 @@ import Cookies from 'js-cookie';
 const Cuestionario = () => {
   const [formValues, setFormValues] = useState({
     a: '', b: '', c: '', d: '', e: '', f: '', g: '', h: '', 
-    i: '', j: '', k: '', l: '', n: '', o: '', p: '', 
+    i: '', j: '', k: '', l: '', m:'' , n: '', o: '', p: '', 
     q: '', r: '', s: '', t: '', u: '', v: '', w: '', x: '', 
-    y: '', z: ''
+    y: ''
   });
 
   const validateInput = (value) => {
@@ -50,18 +50,6 @@ const Cuestionario = () => {
 
     return { nivel, suma };
   };
-
-  function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-}
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -125,114 +113,114 @@ const Cuestionario = () => {
             <td>4=no lo soporto</td></table></p>
           </div>
           <div className="content">
-          
-            <div>
-                <p className="title">LUGARES:</p>
-                {[
-                  ['Grandes almacenes', 'a'],
-                  ['Bares y restaurantes', 'b'],
-                  ['Cines', 'c'],
-                  ['Teatros', 'd'],
-                  ['Supermercados', 'e'],
-                  ['Clases', 'f'],
-                  ['Restaurantes', 'g'],
-                  ['Museos', 'h'],
-                  ['Ascensores', 'i'],
-                  ['Auditorios o estadios', 'j'],
-                  ['Aparcamientos o garajes', 'k'],
-                  ['Exterior (ej. campo, calles amplias, patios)', 'l']
-                ].map(([label, id]) => (
-                  <p key={id}>
-                    {label}:
-                    <input
-                      type="text"
-                      pattern="[0-4]"
-                      maxLength="1"
-                      required
-                      id={id}
-                      value={formValues[id]}
-                      onChange={handleInputChange}
-                    />
-                  </p>
-                ))}
-              </div>
-              <div>
-              <p className="title">SITUACIONES:</p>
-              <p>
-                {[
-                  ['Estar en fila', 'n'],
-                  ['Cruzar puentes', 'p'],
-                  ['Caminar por la calle', 'r'],
-                  ['Estar en casa solo', 't'],
-                  ['Estar lejos de casa', 'v'],
-                  ['Fiestas o encuentros sociales', 'x']
-                ].map(([label, id]) => (
-                  <p key={id}>
-                    {label}:
-                    <input
-                      type="text"
-                      pattern="[0-4]"
-                      maxLength="1"
-                      required
-                      id={id}
-                      value={formValues[id]}
-                      onChange={handleInputChange}
-                    />
-                  </p>
-                ))}
-              </p>
-              </div>
-              <div>
-              <p className="title">TELETRANSPORTES:</p>
-              <p>
-                {[
-                  ['Autobuses', 'o'],
-                  ['Trenes', 'q'],
-                  ['Metro', 's'],
-                  ['Aviones', 'u'],
-                  ['Barcos', 'w'],
-                  ['Conducir o viajar en coche', 'z']
-                ].map(([label, id]) => (
-                  <p key={id}>
-                    {label}:
-                    <input
-                      type="text"
-                      pattern="[0-4]"
-                      maxLength="1"
-                      required
-                      id={id}
-                      value={formValues[id]}
-                      onChange={handleInputChange}
-                    />
-                  </p>
-                ))}
-              </p>
-             </div>
+  <div className='incisos'>
+    <p className="title">LUGARES:</p>
+    {[
+      ['Bares y restaurantes', 'a'],
+      ['Cines', 'b'],
+      ['Supermercados', 'c'],
+      ['Salón de clases', 'd'],
+      ['Restaurantes', 'e'],
+      ['Ascensores', 'f'],
+      ['Auditorios o estadios', 'g'],
+      ['Aparcamientos o garajes', 'h']
+    ].map(([label, id]) => (
+      <div key={id} className="input-container">
+        <p>{label}:</p>
+        <input
+          type="text"
+          pattern="[0-4]"
+          maxLength="1"
+          required
+          id={id}
+          value={formValues[id]}
+          onChange={handleInputChange}
+        />
+      </div>
+    ))}
+  </div>
+
+  <div className='incisos'>
+    <p className="title">SITUACIONES:</p>
+    {[
+      ['Estar en una fila', 'i'],
+      ['Cruzar puentes altos', 'j'],
+      ['Caminar por la calle', 'k'],
+      ['Conversación incómoda', 'l'],
+      ['Estar lejos de casa', 'm'],
+      ['Encuentros sociales', 'n'],
+      ['Platica con desconocido', 'o'],
+      ['Exponer ante un público', 'p']
+    ].map(([label, id]) => (
+      <div key={id} className="input-container">
+        <p>{label}:</p>
+        <input
+          type="text"
+          pattern="[0-4]"
+          maxLength="1"
+          required
+          id={id}
+          value={formValues[id]}
+          onChange={handleInputChange}
+        />
+      </div>
+    ))}
+  </div>
+
+  <div className='incisos'>
+    <p className="title">TRANSPORTES:</p>
+    {[
+      ['Autobuses', 'q'],
+      ['Trenes', 'r'],
+      ['Metro', 's'],
+      ['Aviones', 't'],
+      ['Barcos', 'u'],
+      ['Coches', 'v'],
+      ['Bicicletas','w'],
+      ['Barcos','x']
+    ].map(([label, id]) => (
+      <div key={id} className="input-container">
+        <p>{label}:</p>
+        <input
+          type="text"
+          pattern="[0-4]"
+          maxLength="1"
+          required
+          id={id}
+          value={formValues[id]}
+          onChange={handleInputChange}
+        />
+      </div>
+    ))}
+  </div>
+
+
             </div>
+            <div>
             <p>
-              <br /><br />Indicar el número total de ataques de pánico que se han tenido en los 7 últimos días, teniendo en cuenta que se define un ataque de pánico como un conjunto de las siguientes situaciones:
-              <br /><br />
-              (1)Un alto nivel de ansiedad
-              <br /><br />
-              (2)Reacciones corporales intensas (palpitaciones del corazón, sudoración, temblores musculares, mareos, náuseas)
-              <br /><br />
-              (3)Pérdida transitoria de la capacidad de planificar, pensar o razonar
-              <br /><br />
-              (4)Un intenso deseo de escapar o huir de la situación. (Esta última característica es lo que diferencía el ataque de pánico de los altos niveles de ansiedad o miedo).
+              Indicar el número total de ataques de pánico que se han tenido en los 7 últimos días, teniendo en cuenta que se define un ataque de pánico como un conjunto de las siguientes situaciones:
+            
+            <p className='bottom-section'>
+              <ul>
+              <li>(1)Un alto nivel de ansiedad</li>
+              <li>(2)Reacciones corporales intensas (palpitaciones del corazón, sudoración, temblores musculares, mareos, náuseas)</li>
+              <li>(3)Pérdida transitoria de la capacidad de planificar, pensar o razonar</li>
+              <li>(4)Un intenso deseo de escapar o huir de la situación. (Es lo que diferencía el ataque de pánico de los altos niveles de ansiedad o miedo)</li>
+              </ul></p>
+              <p className='ataques'>Numero de ataques de pánico: 
               <input
                 type="text"
-                pattern="[0-4]"
                 maxLength="1"
                 required
                 id="y"
                 value={formValues.y}
                 onChange={handleInputChange}
-              />
+              /></p>
             </p>
          
   
           <button type="submit" className="create-account-btn">CREAR CUENTA</button>
-       
+       </div>
       </form>
     </Quest>
   );}
@@ -241,7 +229,7 @@ const Cuestionario = () => {
 export default Cuestionario;
 
 const Quest = styled.nav`
-   @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
         .font-style-title {font-family:'League Spartan', sans-serif !important; } 
         .font-style-subtitle {font-family: 'League Spartan', sans-serif !important; } 
         .font-style-heading {font-family: 'League Spartan', sans-serif !important; } 
@@ -250,11 +238,11 @@ const Quest = styled.nav`
     background-color: #f7eedd;
     margin-right:5%;
     margin-left:5%;
+    font-family: League Spartan;
 }
     table{
     margin:0;
     width:100%;
-    text-align:center;
     font-weight: bolder;
     color: #008dda;
     }
@@ -266,12 +254,6 @@ h1{
     margin-bottom: 1%;
 
 }
-    .hospital-info {
-    margin:0;
-    }
-    .hospital-info p, .hospital-info h2{
-    margin-left:0;
-    }
     h2{
     font-size: 5vh;
     color: #008dda;
@@ -280,7 +262,7 @@ h1{
 
 }
 p{
-    font-size: 2.7vh;
+    font-size: 3vh;
     color: black;
     text-align: justify;
     margin-bottom: 0;
@@ -288,36 +270,33 @@ p{
     margin-right: 0;
 }
 .content{
-  height:88.7vh;
-
     display: grid;
-    grid-template-columns: 33% 33% 33%; /* Divide el contenedor en dos columnas iguales */;
-    gap:8%;
+    grid-template-columns: 30% 30% 30%; /* Divide el contenedor en dos columnas iguales */;
+    gap:5%;
+    margin: 5% ;
     }
-    .content div {
+.input-container{
+    
+    display: grid;
+    grid-template-columns: 70% 30%; /* Divide el contenedor en dos columnas iguales */;
+    gap:2%;
+    align-items: center;
+}
+.input-container p , input{
+    margin: 3% 0;
+    font-size: 2vh;
+    text-align: justify;
+}
+.ataques{
+padding: 0.5% 0;
+    input{
+      margin:0 2%;
+    } 
+}
+
+.content div {
   margin :0;
-    }
-
-  .button , .input{
-            width: 100%;
-            background-color: #ace2e1;
-            border: 0;
-            margin-top: 10%;
-            margin-bottom: 10%;
-            padding: 10%;
-            color: #008dda;
-            font-family: League Spartan;
-            border-radius: 100px;
-            font-size: 3.3vh;
-            cursor: pointer;
-            display: block; 
-            
-        }
-    .button:hover {
-    background-color: #008dda;
-    color: #ace2e1;
-  }
-
+}
 input {
     border-radius: 50%;  
     font-weight: bold;
@@ -332,7 +311,36 @@ input {
 .subtitle{
   font-weight: bolder;
   text-align: center;
-  
 }
-
+  td{
+  padding-right: 1%;
+  font-size: 2.4vh;
+  }
+.title{
+font-weight: bold;
+margin: 4% 0;
+}
+.bottom-section{
+  font-size: 2vh;
+  color: #008dda;
+  font-weight: bold;
+}
+ul, li{
+margin: 0 ;
+padding: 0.5% 0;
+list-style: none;
+}
+button{
+    width: 40%;
+    background-color: #008dda;
+    border: 0;
+    margin: 2% 30%;
+    padding: 4%;
+    color: #ace2e1;
+    font-size: 3.5vh;
+    font-family: 'League Spartan', sans-serif;
+    border-radius: 150px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
 `;

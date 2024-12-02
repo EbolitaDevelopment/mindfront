@@ -64,7 +64,7 @@ const Registrar= () => {
         <div className="imagen">
           <h1>CREA TU CUENTA</h1>
           <h2>Regístrate</h2>
-          <img src="IMG_1581.png" alt="" />
+          <img src="logoML.png" alt="" />
        
         <p>Tenga en cuenta que al registrarse esta de acuerdo con los <a href="/terminosycondiciones">términos y  condiciones</a> así 
                 como <a href="/politicadeprivacidad">la  política  de privacidad.</a></p> </div>
@@ -167,8 +167,8 @@ const Registro = styled.div`
     text-align: justify;
   }
 
-  .imagen {
-    margin: 3% 0;
+  img {
+    width:50%;
   }
 
   .central {
