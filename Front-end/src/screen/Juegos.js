@@ -40,7 +40,7 @@ const Juegos = () => {
                   <h3>MEMORAMA</h3>
                   <button
                     className="botonesS"
-                    onClick={() => handleGameSelection('afecciones-cientific')}
+                    onClick={() => handleGameSelection('afecciones-cientifica')}
                   >
                     Afecciones (vista científica)
                   </button>

@@ -1,23 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';  
 
-const Pincompleto = () => {
+const NoLoggedIn = () => {
   return (
-    <Completoin>
-        <div className="contenedor-principal">
-            <div className="logo-container">
-                <img src="logoML.png" alt="Logo Mindloose" />
-            </div>
-            <h2>PROCESO INCOMPLETO</h2>
-            <p>Hubo complicaciones para realizar la petición.</p>
-        </div>
-    </Completoin>
+    <Nologgeado>
+    <div className="contenedor-principal">
+      <div className="logo-container">
+        <img src="logoML.png" alt="Logo Mindloose" />
+      </div>
+      <h2>ACCESO RESTRINGIDO</h2>
+      <p>Esta sección requiere que no tengas una sesión activa. <br/>Por favor, cierra tu sesión actual para continuar.</p>
+    </div></Nologgeado>
   );
 };
 
-export default Pincompleto;
+export default NoLoggedIn;
 
-const Completoin = styled.nav`        
+const Nologgeado = styled.nav`        
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 *{
 background-color: #f7eedd;

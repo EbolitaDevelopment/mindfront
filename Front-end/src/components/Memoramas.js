@@ -88,6 +88,7 @@ const Memorama = ({ gameType, onBackToGames }) => {
   const filterCards = (cards) => {
     switch (gameType) {
       case 'afecciones-cientifica':
+        return cards.filter(card => card.style === '');
       case 'afecciones-social':
         return cards.filter(card => card.style === '');
       case 'fisica-cerebro':
@@ -165,7 +166,7 @@ const Memorama = ({ gameType, onBackToGames }) => {
   const titulo = gameType.replace(/-/g, ' ').toUpperCase();
 
   return (
-    <Memo>
+    <Ejemplo>
       <div className="game-wrapper">
       {gameWon && (
         <MedalOverlay>
@@ -188,57 +189,51 @@ const Memorama = ({ gameType, onBackToGames }) => {
         <h1>{titulo}</h1>
         <p>Intentos: {moves}</p>
         <div className="game-grid">
-          {gameCards.map((card) => {
-            const isRevealed = flippedCards.includes(card.id) || matchedPairs.includes(card.id);
-            const isMatched = matchedPairs.includes(card.id);
-            
-            return (
-              <div
-                key={card.id}
-                onClick={() => handleCardClick(card.id)}
-                className={`game-card 
-                  ${isRevealed ? 'revealed' : 'hidden'} 
-                  ${isMatched ? 'matched' : ''}`}
-              >
-                <div className="card-content">
-                  {isRevealed ? (
-                    card.type === 'description' ? (
-                      <div className="card-inner description-card">
+          {gameCards.map((card) => (
+            <div 
+              key={card.id} 
+              className={`game-card ${
+                matchedPairs.includes(card.id) ? 'revealed matched' : 
+                flippedCards.includes(card.id) ? 'revealed' : 'hidden'
+              }`}
+              onClick={() => handleCardClick(card.id)}
+            >
+              {(matchedPairs.includes(card.id) || flippedCards.includes(card.id)) ? (
+                <div className={`card-inner ${card.type}-card`}>
+                  <div className="card-content">
+                    {card.type === 'description' ? (
+                      <>
                         <h3 className="card-title">{card.content}</h3>
                         <p className="card-description">{card.description}</p>
-                      </div>
+                      </>
                     ) : (
-                      <div className="card-inner image-card">
-                        <div className="card-image-container">
-                          <img 
-                            src={card.imgSrc || 'default-image.png'} 
-                            alt={card.content}
-                            className="card-image"
-                          />
+                      <div className="card-image-container">
+                        <div className="mystery-icon">
+                          <img href='memoramaback.png'/>
                         </div>
-                        <h3 className="card-title">{card.content}</h3>
                       </div>
-                    )
-                  ) : (
-                    <div className="mystery-icon">
-                      <img src='memoramaback.png' alt="Card Back" />
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
-                
-              </div>
-            );
-          })}</div>
-          <div>
+              ) : (
+                <div className="mystery-icon">
+                  <img src='memoramaback.png'/>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        
+        <div>
           <button
             onClick={resetGame}
-            className={`reset-button `}
+            className="reset-button"
           >
             Reiniciar
-          </button></div>
-        
+          </button>
+        </div>
       </div>
-    </Memo>
+    </Ejemplo>
   );
 };
 
@@ -320,7 +315,7 @@ const MedalIcon = styled.div`
   text-shadow: 0 4px 6px rgba(0,0,0,0.1);
 `;
 
-const Memo = styled.div`
+const Ejemplo = styled.div`
   * {
     font-family: 'League Spartan', sans-serif;
     background-color: #f7eedd;  
@@ -338,9 +333,9 @@ p {
   margin-top: 0;
 }
 .game-wrapper {
-  width: 70%;
+  width: 60vw;
   padding: 0;
-  margin: 0 15%;
+  margin: 0 20vw;
   height: 94vh;
 }
 
@@ -385,12 +380,10 @@ button:hover {
 }
 
 
-
 .game-card {
     position: relative;
     aspect-ratio: 1 / 1;
     cursor: pointer;
-    border-radius: 0.75rem;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -402,15 +395,16 @@ button:hover {
   .game-card.hidden {
     background-color: #7c97cb !important;
     transition: transform 0.5s;
+
   }
 
   .game-card.hidden:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     transform: translateY(-0.25rem) rotateX(10deg);
   }
 
   .game-card.revealed {
     position: relative;
+    border-radius: 50px;
     aspect-ratio: 1 / 1;
     cursor: pointer;
     border-radius: 0.75rem;
@@ -423,14 +417,12 @@ button:hover {
   }
 
   .game-card.revealed.matched {
-    background-color: #4ade80 !important; /* Soft green for matched cards */
     animation: none;
     transition: transform 0.3s ease;
   }
 
   .card-inner.description-card {
-    background-color: #ace2e1; /* Light teal for description cards */
-    border-radius: 0.75rem;
+    border-radius: 50px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -443,7 +435,7 @@ button:hover {
 
   .card-inner.image-card {
     background-color: #ace2e1; /* Light teal for description cards */
-    border-radius: 0.75rem;
+    border-radius: 50px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -456,6 +448,8 @@ button:hover {
 
 .card-content {
   width: 100%;
+  background-color: #ace2e1; /* Light teal for description cards */
+    border-radius: 50px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -495,13 +489,14 @@ button:hover {
 
 .mystery-icon {
   font-size: 3.75rem;
-  color: #f97316;
 }
 
 .mystery-icon img {
   width: 80%;
   align-items: middle;
   padding: 10% 10%;
+  background-color:#7c97cb;
+  border-radius: 50px;
 }
 .back-to-games{
   width: 15%;
