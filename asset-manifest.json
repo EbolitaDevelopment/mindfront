@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/mindfront/static/css/main.ba0dc76c.css",
+    "main.js": "/mindfront/static/js/main.d997d61a.js",
+    "static/js/453.cae53f2c.chunk.js": "/mindfront/static/js/453.cae53f2c.chunk.js",
+    "index.html": "/mindfront/index.html",
+    "main.ba0dc76c.css.map": "/mindfront/static/css/main.ba0dc76c.css.map",
+    "main.d997d61a.js.map": "/mindfront/static/js/main.d997d61a.js.map",
+    "453.cae53f2c.chunk.js.map": "/mindfront/static/js/453.cae53f2c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ba0dc76c.css",
+    "static/js/main.d997d61a.js"
+  ]
+}
